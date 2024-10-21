@@ -15,7 +15,7 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    String home() {
+    public String home() {
         return homeRepository.find().toString();
     }
 }

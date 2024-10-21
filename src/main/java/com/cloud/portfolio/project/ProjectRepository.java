@@ -1,4 +1,4 @@
-package com.cloud.portfolio.home;
+package com.cloud.portfolio.project;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,21 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public class HomeRepository {
+import java.util.List;
 
-    private static final Logger log = LoggerFactory.getLogger(HomeRepository.class);
+@Repository
+public class ProjectRepository {
+
+    private static final Logger log = LoggerFactory.getLogger(ProjectRepository.class);
     private final JdbcClient jdbcClient;
 
     @Autowired
-    public HomeRepository(JdbcClient jdbcClient) {
+    public ProjectRepository(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
     }
 
-    public Home find() {
+    public List<Project> findAll() {
         return jdbcClient
-                .sql("SELECT * FROM home")
-                .query(Home.class)
-                .single();
+                .sql("SELECT * FROM Projects")
+                .query(Project.class)
+                .list();
     }
 }
